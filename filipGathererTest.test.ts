@@ -1,5 +1,5 @@
-import { filipPage2 } from "./filipPO";
-const filipTest1 = new filipPage2();
+import { filipPage } from "./filipPageObject";
+const filipTest1 = new filipPage();
 
 const fs = require("fs");
 
