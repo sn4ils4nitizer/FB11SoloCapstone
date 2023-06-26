@@ -15,15 +15,15 @@ export class filipPage extends BasePage {
 
             //Color check boxes
             whiteBox: By = By.xpath('//label[@for="ctl00_ctl00_MainContent_Content_SearchControls_SearchWhite"]');
-            blueBox: By = By.id("ctl00_ctl00_MainContent_Content_SearchControls_SearchBlue");
-            blackBox: By = By.id("ctl00_ctl00_MainContent_Content_SearchControls_SearchBlack");
-            redBox: By = By.id("ctl00_ctl00_MainContent_Content_SearchControls_SearchRed");
+            blueBox: By = By.xpath('//label[@for="ctl00_ctl00_MainContent_Content_SearchControls_SearchBlue"]');
+            blackBox: By = By.xpath('//label[@for="ctl00_ctl00_MainContent_Content_SearchControls_SearchBlack"]');
+            redBox: By = By.xpath('//label[@for="ctl00_ctl00_MainContent_Content_SearchControls_SearchRed"]');
             greenBox: By = By.xpath('//label[@for="ctl00_ctl00_MainContent_Content_SearchControls_SearchGreen"]');
 
             //Search conditions check boxes
-            matchExactColors: By = By.id("ctl00_ctl00_MainContent_Content_SearchControls_SearchColorExact");
-            excludeColors: By = By.id("ctl00_ctl00_MainContent_Content_SearchControls_SearchColorExclude");
-            matchMulticolor: By = By.id("ctl00_ctl00_MainContent_Content_SearchControls_SearchColorMulti");
+            matchExactColors: By = By.xpath('//label[@for="ctl00_ctl00_MainContent_Content_SearchControls_SearchColorExact"]');
+            excludeColors: By = By.xpath('//label[@for="ctl00_ctl00_MainContent_Content_SearchControls_SearchColorExclude"]');
+            matchMulticolor: By = By.xpath('//label[@for="ctl00_ctl00_MainContent_Content_SearchControls_SearchColorMulti"]');
 
             //Search Button
             searchBtn: By = By.id("ctl00_ctl00_MainContent_Content_SearchControls_searchSubmitButton");
@@ -35,7 +35,7 @@ export class filipPage extends BasePage {
             outputChecklist: By = By.xpath('//*[@id="ctl00_ctl00_MainContent_Content_SearchControls_resultsView"]/option[4]');
 
             //Checklist Results
-            checklistColor: By = By.xpath('//td[contains(text(), "White")]');
+            checklistColor: By = By.xpath('//*[@id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_searchResultsContainer"]/div/table/tbody/tr[2]/td[4]');
     
 
     //constructor
