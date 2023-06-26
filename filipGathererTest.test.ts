@@ -27,7 +27,7 @@ describe("Testing Gatherer", () => {
         if (e) console.log(e);
         else console.log("Screenshot has been saved.")
         });
-        
+
     });
 
 
@@ -134,12 +134,12 @@ describe("Testing Gatherer", () => {
 
     });
 
-    test("Search for Multicolor Cards Only", async ()=> {
+    test("Search for Multicolor Cards Only FB11SC-10", async ()=> {
         await filipGatherer.click(filipGatherer.matchMulticolor);
         await filipGatherer.click(filipGatherer.outputChecklist);
         await filipGatherer.click(filipGatherer.searchBtn);
         let resultsMulticolorOnly = await filipGatherer.getText(filipGatherer.checklistColor);
-        expect(resultsMulticolorOnly).toContain("White" || "Blue" || "Black" || "Red" || "Green");
+        expect(resultsMulticolorOnly).toContain("/");
         console.log(resultsMulticolorOnly);
 
         fs.writeFile(`${__dirname}/multicolorOnly.png`,
@@ -151,6 +151,24 @@ describe("Testing Gatherer", () => {
 
     });
     
+    test("Advanced Search by Artist FB11SC-13", async ()=> {
+        await filipGatherer.click(filipGatherer.advancedSearch);
+        await filipGatherer.setInput(filipGatherer.byArtist, "seb mckinnon");
+        await filipGatherer.click(filipGatherer.advArtistAdd);
+        await filipGatherer.click(filipGatherer.advSearchBtn);
+        await filipGatherer.click(filipGatherer.advClickOnCard);
+        let resultsArtist = await filipGatherer.getText(filipGatherer.advCardArtist);
+        expect(resultsArtist).toContain("Seb McKinnon");
+
+        fs.writeFile(`${__dirname}/cardArtist.png`,
+    await filipGatherer.driver.takeScreenshot(), "base64",
+    (e) => {
+        if (e) console.log(e);
+        else console.log("Screenshot has been saved.")
+        });
+
+    }, 100000);
+
     afterAll(async ()=> {
         await filipGatherer.driver.quit();
     });

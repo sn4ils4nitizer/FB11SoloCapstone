@@ -37,6 +37,13 @@ export class filipPage extends BasePage {
             //Checklist Results
             checklistColor: By = By.xpath('//*[@id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_searchResultsContainer"]/div/table/tbody/tr[2]/td[4]');
     
+        //Advanced Search
+            advancedSearch: By = By.xpath('//*[@id="Main"]/div[1]/div[3]/a[2]');
+            byArtist: By = By.id("autoCompleteSourceBoxartistAddText6_InnerTextBox");
+            advSearchBtn: By = By.id("ctl00_ctl00_MainContent_Content_filterSubmit");
+            advArtistAdd: By = By.id("ctl00_ctl00_MainContent_Content_artistAdd");
+            advClickOnCard: By = By.xpath('//*[@id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ctl00_listRepeater_ctl00_cardTitle"]');
+            advCardArtist: By = By.xpath('//*[@id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_ArtistCredit"]/a');
 
     //constructor
     constructor() {
