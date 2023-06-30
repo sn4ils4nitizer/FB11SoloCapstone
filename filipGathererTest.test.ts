@@ -1,10 +1,11 @@
-import { By } from "selenium-webdriver";
+import { By, WebElement } from "selenium-webdriver";
 import { filipPage } from "./filipPageObject";
+import { Driver } from "selenium-webdriver/chrome";
 const filipGatherer = new filipPage();
 
 const fs = require("fs");
 
-//Console.log for each result to confirm assertion are made correctly
+//Console.log for each result to confirm assertions are made correctly
 
 describe("Testing Gatherer", () => {
     beforeEach(async ()=> {
@@ -19,7 +20,10 @@ describe("Testing Gatherer", () => {
         let colorResults1 = await filipGatherer.getText(filipGatherer.checklistColor);
         console.log(colorResults1);
         expect(colorResults1).toContain("White");
-        
+        let colorResults2 = await filipGatherer.getText(filipGatherer.checklistColor2);
+        expect(colorResults2).toContain("White");
+        let colorResults3 = await filipGatherer.getText(filipGatherer.checklistColor3);
+        expect(colorResults3).toContain("White");
 
         fs.writeFile(`${__dirname}/includesColor.png`,
     await filipGatherer.driver.takeScreenshot(), "base64",
@@ -30,7 +34,7 @@ describe("Testing Gatherer", () => {
 
     });
 
-
+    
     test("Filter Cards by Name FB11SC-11", async ()=> {
         await filipGatherer.setInput(filipGatherer.searchTerm, "Jin-Gitaxias");
         //await filipGatherer.click(filipGatherer.whiteBox);
@@ -84,6 +88,12 @@ describe("Testing Gatherer", () => {
         let excludeColorsResult = await filipGatherer.getText(filipGatherer.checklistColor);
         console.log(excludeColorsResult);        
         expect(excludeColorsResult).not.toContain("Red" && "White" && "Green");
+        let excludeColorsResult2 = await filipGatherer.getText(filipGatherer.checklistColor2);
+        console.log(excludeColorsResult2);        
+        expect(excludeColorsResult).not.toContain("Red" && "White" && "Green");
+        let excludeColorsResult3 = await filipGatherer.getText(filipGatherer.checklistColor3);
+        console.log(excludeColorsResult3);        
+        expect(excludeColorsResult).not.toContain("Red" && "White" && "Green");
 
         fs.writeFile(`${__dirname}/excludeUncheckedColors.png`,
     await filipGatherer.driver.takeScreenshot(), "base64",
@@ -92,8 +102,8 @@ describe("Testing Gatherer", () => {
         else console.log("Screenshot has been saved.")
         });
 
-    });
-
+    }); 
+    
     test("Search for Multicolor Card Containing Chosen Colors FB11SC-8", async ()=>  {
         await filipGatherer.click(filipGatherer.redBox);
         await filipGatherer.click(filipGatherer.greenBox);
@@ -103,16 +113,22 @@ describe("Testing Gatherer", () => {
         let resultsMulticolor = await filipGatherer.getText(filipGatherer.checklistColor);
         expect(resultsMulticolor).toContain("Red" && "Green");
         console.log(resultsMulticolor)
+        let resultsMulticolor2 = await filipGatherer.getText(filipGatherer.checklistColor2);
+        expect(resultsMulticolor2).toContain("Red" && "Green");
+        console.log(resultsMulticolor)
+        let resultsMulticolor3 = await filipGatherer.getText(filipGatherer.checklistColor3);
+        expect(resultsMulticolor3).toContain("Red" && "Green");
+        console.log(resultsMulticolor)
 
         fs.writeFile(`${__dirname}/multicolorContainsChosenColors.png`,
     await filipGatherer.driver.takeScreenshot(), "base64",
     (e) => {
         if (e) console.log(e);
         else console.log("Screenshot has been saved.")
-        });
+        }); 
 
     });
-
+    
     test("Search for Card That Are Only the Chosen Colors FB11SC-2", async ()=> {
         await filipGatherer.click(filipGatherer.whiteBox)
         await filipGatherer.click(filipGatherer.blueBox);
@@ -123,7 +139,14 @@ describe("Testing Gatherer", () => {
         let resultsChoseColorsOnly = await filipGatherer.getText(filipGatherer.checklistColor);
         expect(resultsChoseColorsOnly).toContain("White" || "Blue");
         expect(resultsChoseColorsOnly).not.toContain("Red" && "Green" && "Black");
+        let resultsChoseColorsOnly2 = await filipGatherer.getText(filipGatherer.checklistColor2);
+        expect(resultsChoseColorsOnly2).toContain("White" || "Blue");
+        expect(resultsChoseColorsOnly2).not.toContain("Red" && "Green" && "Black");
+        let resultsChoseColorsOnly3 = await filipGatherer.getText(filipGatherer.checklistColor3);
+        expect(resultsChoseColorsOnly3).toContain("White" || "Blue");
+        expect(resultsChoseColorsOnly3).not.toContain("Red" && "Green" && "Black");
         console.log(resultsChoseColorsOnly);
+     
 
         fs.writeFile(`${__dirname}/multicolorContainsOnlyChosenColors.png`,
     await filipGatherer.driver.takeScreenshot(), "base64",
@@ -133,7 +156,7 @@ describe("Testing Gatherer", () => {
         });
 
     });
-
+    
     test("Search for Multicolor Cards Only FB11SC-10", async ()=> {
         await filipGatherer.click(filipGatherer.matchMulticolor);
         await filipGatherer.click(filipGatherer.outputChecklist);
@@ -141,6 +164,10 @@ describe("Testing Gatherer", () => {
         let resultsMulticolorOnly = await filipGatherer.getText(filipGatherer.checklistColor);
         expect(resultsMulticolorOnly).toContain("/");
         console.log(resultsMulticolorOnly);
+        let resultsMulticolorOnly2 = await filipGatherer.getText(filipGatherer.checklistColor2);
+        expect(resultsMulticolorOnly2).toContain("/");
+        let resultsMulticolorOnly3 = await filipGatherer.getText(filipGatherer.checklistColor3);
+        expect(resultsMulticolorOnly3).toContain("/");
 
         fs.writeFile(`${__dirname}/multicolorOnly.png`,
     await filipGatherer.driver.takeScreenshot(), "base64",
@@ -168,8 +195,41 @@ describe("Testing Gatherer", () => {
         });
 
     }, 100000);
+    
+    /*
+    test("Use Search to Find only Black and Red Goblin Type Cards", async ()=> {
+        await filipGatherer.driver.manage().window().maximize();
+        await filipGatherer.click(filipGatherer.blackBox);
+        await filipGatherer.click(filipGatherer.redBox);
+        await filipGatherer.click(filipGatherer.matchExactColors);
+        await filipGatherer.click(filipGatherer.matchMulticolor);
+        await filipGatherer.click(filipGatherer.byName);
+        await filipGatherer.click(filipGatherer.byType);
+        await filipGatherer.setInput(filipGatherer.searchTerm, "goblin");
+        await filipGatherer.click(filipGatherer.outputChecklist);
+        await filipGatherer.click(filipGatherer.searchBtn);
+        //let listColorsWebElements: Array<WebElement> = await filipGatherer.driver.findElements(By.xpath('//td[contains(@class, "color")]'));
+        //let textColorsList: Array<string> = []
+        //for(let i = 0; i < listColorsWebElements.length; i++) {
+           // console.log(filipGatherer.getText(WebElement[i]))
+            
+        //}
+
+        var colorListResult: Array<WebElement> = await filipGatherer.driver.findElements(By.xpath('//td[contains(@class, "color")]'));
+        var colorArray: Array<string> = []
+        
+        for(let i=0;i<colorListResult.length;i++){
+            let colorText = await filipGatherer.driver.findElements(colorListResult[i]).getText();
+            
+            colorArray.push(colorText);
+            //colorArray.push(await filipGatherer.getText(colorListResult[i]))
+      }
+       console.log(colorListResult)
+        
+       
+    }); */
 
     afterAll(async ()=> {
-        await filipGatherer.driver.quit();
+       await filipGatherer.driver.quit();
     });
 });

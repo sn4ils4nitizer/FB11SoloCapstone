@@ -24,6 +24,8 @@ export class filipPage extends BasePage {
             matchExactColors: By = By.xpath('//label[@for="ctl00_ctl00_MainContent_Content_SearchControls_SearchColorExact"]');
             excludeColors: By = By.xpath('//label[@for="ctl00_ctl00_MainContent_Content_SearchControls_SearchColorExclude"]');
             matchMulticolor: By = By.xpath('//label[@for="ctl00_ctl00_MainContent_Content_SearchControls_SearchColorMulti"]');
+            byName: By = By.xpath('//label[@for="ctl00_ctl00_MainContent_Content_SearchControls_SearchCardName"]');
+            byType: By = By.xpath('//label[@for="ctl00_ctl00_MainContent_Content_SearchControls_SearchCardTypes"]');
 
             //Search Button
             searchBtn: By = By.id("ctl00_ctl00_MainContent_Content_SearchControls_searchSubmitButton");
@@ -36,6 +38,8 @@ export class filipPage extends BasePage {
 
             //Checklist Results
             checklistColor: By = By.xpath('//*[@id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_searchResultsContainer"]/div/table/tbody/tr[2]/td[4]');
+            checklistColor2: By = By.xpath('//*[@id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_searchResultsContainer"]/div/table/tbody/tr[10]/td[4]');
+            checklistColor3: By = By.xpath('//*[@id="ctl00_ctl00_ctl00_MainContent_SubContent_SubContent_searchResultsContainer"]/div/table/tbody/tr[16]/td[4]');
     
         //Advanced Search
             advancedSearch: By = By.xpath('//*[@id="Main"]/div[1]/div[3]/a[2]');
