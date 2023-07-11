@@ -11,7 +11,7 @@ describe("Testing Gatherer", () => {
     beforeEach(async ()=> {
         await filipGatherer.navigate();
     });
-    /*
+    
     test("Search Cards by Color FB11SCC-4", async ()=> {
         await filipGatherer.driver.manage().window().maximize();
         await filipGatherer.click(filipGatherer.whiteBox);
@@ -195,7 +195,7 @@ describe("Testing Gatherer", () => {
         });
 
     }, 100000);
-    */
+    
     
     test("Use Search to Find only Black and Red Goblin Type Cards", async ()=> {
         await filipGatherer.driver.manage().window().maximize();
