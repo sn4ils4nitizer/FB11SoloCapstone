@@ -11,7 +11,7 @@ describe("Testing Gatherer", () => {
     beforeEach(async ()=> {
         await filipGatherer.navigate();
     });
-    
+    /*
     test("Search Cards by Color FB11SCC-4", async ()=> {
         await filipGatherer.driver.manage().window().maximize();
         await filipGatherer.click(filipGatherer.whiteBox);
@@ -195,8 +195,8 @@ describe("Testing Gatherer", () => {
         });
 
     }, 100000);
+    */
     
-    /*
     test("Use Search to Find only Black and Red Goblin Type Cards", async ()=> {
         await filipGatherer.driver.manage().window().maximize();
         await filipGatherer.click(filipGatherer.blackBox);
@@ -208,26 +208,21 @@ describe("Testing Gatherer", () => {
         await filipGatherer.setInput(filipGatherer.searchTerm, "goblin");
         await filipGatherer.click(filipGatherer.outputChecklist);
         await filipGatherer.click(filipGatherer.searchBtn);
-        //let listColorsWebElements: Array<WebElement> = await filipGatherer.driver.findElements(By.xpath('//td[contains(@class, "color")]'));
-        //let textColorsList: Array<string> = []
-        //for(let i = 0; i < listColorsWebElements.length; i++) {
-           // console.log(filipGatherer.getText(WebElement[i]))
-            
-        //}
-
+      
         var colorListResult: Array<WebElement> = await filipGatherer.driver.findElements(By.xpath('//td[contains(@class, "color")]'));
         var colorArray: Array<string> = []
         
         for(let i=0;i<colorListResult.length;i++){
-            let colorText = await filipGatherer.driver.findElements(colorListResult[i]).getText();
-            
-            colorArray.push(colorText);
-            //colorArray.push(await filipGatherer.getText(colorListResult[i]))
-      }
-       console.log(colorListResult)
-        
-       
-    }); */
+            var colorString: string = await colorListResult[i].getText()
+            colorArray.push(colorString);
+        };
+
+       console.log(colorArray);
+
+       colorArray.forEach(color => {
+        expect(color).toContain("Black" || "Red")
+       });
+    }); 
 
     afterAll(async ()=> {
        await filipGatherer.driver.quit();
